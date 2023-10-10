@@ -1,0 +1,17 @@
+{
+    "require": {
+        "slim/slim": "^4.12",
+        "twig/twig": "^3.7",
+        "php-di/php-di": "^7.0",
+        "slim/psr7": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\":"app"
+        },
+        "files": [
+            "app/functions/helpers.php"
+        ]
+
+    }
+}
