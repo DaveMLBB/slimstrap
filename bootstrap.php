@@ -29,10 +29,16 @@ $capsule->addConnection([
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
-$twig = Twig::create('templates/', ['cache' => false]);
+$twig = Twig::create('../templates');
 
 $container->set('flash', function () {
     return new Messages();
+});
+
+$container->set('view', function ($container) {
+    $settings = $container->get('settings')['twig'];
+    $view = new \Slim\Views\Twig($settings['../templates'], $settings);
+    return $view;
 });
 
 AppFactory::setContainer($container);

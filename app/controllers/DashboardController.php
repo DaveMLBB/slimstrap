@@ -8,6 +8,13 @@ use Slim\Views\Twig;
 
 class DashboardController extends Controller
 {
+    protected $view;
+
+    public function __construct(Twig $view)
+    {
+        $this->view = $view;
+    }
+    
     public function showDashboard(Request $request, Response $response)
     {
         return $this->view->render($response, 'dashboard.twig', ['title' => 'Dashboard']);
