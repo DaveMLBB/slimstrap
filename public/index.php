@@ -11,4 +11,13 @@ $app->get('/register', '\app\controllers\AuthController:showRegistrationForm');
 $app->post('/register', '\app\controllers\AuthController:register');
 $app->get('/', '\app\controllers\DashboardController:showDashboard');
 
+$errorMiddleware = $app->addErrorMiddleware(true, true, true);
+
+$errorMiddleware->setErrorHandler(
+    Slim\Exception\HttpNotFoundException::class,
+    function (Psr\Http\Message\ServerRequestInterface $request) use ($container) {
+        $controller = new app\controllers\ExceptionController($container);
+        return $controller->notFound($request);
+    });
+
 $app->run();
