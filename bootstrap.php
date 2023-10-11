@@ -5,17 +5,39 @@ require "vendor/autoload.php";
 use DI\ContainerBuilder;
 use Slim\Factory\AppFactory;
 use Slim\Psr7\Factory\ResponseFactory;
+use Illuminate\Database\Capsule\Manager as Capsule;
+use Slim\Views\Twig;
+use Slim\Views\TwigMiddleware;
+use Slim\Flash\Messages;
 
-// Crea un container di dipendenze utilizzando PHP-DI
 $containerBuilder = new ContainerBuilder();
 $container = $containerBuilder->build();
 
-// Configura Slim per utilizzare il container di dipendenze e l'implementazione PSR-17
+$capsule = new Capsule;
+
+$capsule->addConnection([
+    'driver' => 'mysql',
+    'host' => 'localhost',
+    'database' => 'omniasoftinfo_slimstrap',
+    'username' => 'omniasoftinfo_slimstrap',
+    'password' => 'Da.vi.de.24!', 
+    'charset' => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix' => '',
+]);
+
+$capsule->setAsGlobal();
+$capsule->bootEloquent();
+
+$twig = Twig::create('templates/', ['cache' => false]);
+
+$container->set('flash', function () {
+    return new Messages();
+});
+
 AppFactory::setContainer($container);
 AppFactory::setResponseFactory(new ResponseFactory());
 
 $app = AppFactory::create();
-
-// Aggiungi altre configurazioni globali, middleware, ecc., se necessario
 
 return $app;

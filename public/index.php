@@ -5,11 +5,10 @@ require "../bootstrap.php";
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 
-$app = require "../bootstrap.php"; // Carica l'applicazione Slim creata in bootstrap.php
-
-$app->get('/', function(Request $request, Response $response, array $args) {
-    $response->getBody()->write(dd($request));
-    return $response;
-});
+$app->get('/login', '\app\controllers\AuthController:showLoginForm');
+$app->post('/login', '\app\controllers\AuthController:login');
+$app->get('/register', '\app\controllers\AuthController:showRegistrationForm');
+$app->post('/register', '\app\controllers\AuthController:register');
+$app->get('/dashboard', '\app\controllers\DashboardController:showDashboard');
 
 $app->run();
