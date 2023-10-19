@@ -1,0 +1,58 @@
+    <style>
+         .custom-navbar {
+            background-color: #343a40;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .custom-navbar .navbar-nav .nav-link {
+            color: #ffffff;
+            transition: color 0.3s;
+        }
+
+        .custom-navbar .navbar-nav .nav-link:hover {
+            color: #007bff;
+        }
+
+        .custom-navbar .dropdown-menu .dropdown-item {
+            color: #000000;
+        }
+
+        .custom-navbar .dropdown-menu .dropdown-item:hover {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+    </style>
+
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="clientSettingsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Impostazioni Cliente
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="clientSettingsDropdown">
+                            <a class="dropdown-item" href="/add-customer">Aggiungi Cliente</a>
+                            <a class="dropdown-item" href="/edit-customer">Modifica Cliente</a>
+                            <a class="dropdown-item" href="/delete-customer">Elimina Cliente</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="invoiceSettingsDropdown" role, button, data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Impostazioni Fattura
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="invoiceSettingsDropdown">
+                            <a class="dropdown-item" href="/add-invoice">Crea Fattura</a>
+                        <!--    <a class="dropdown-item" href="/edit-invoice">Modifica Fattura</a>  -->
+                        <!--   <a class="dropdown-item" href="/delete-invoice">Elimina Fattura</a>  -->
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>

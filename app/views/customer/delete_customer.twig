@@ -4,52 +4,71 @@
     <meta charset="UTF-8">
     <title>Elimina Cliente</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        header {
+            padding: 10px 0; 
+        }
+        .logo img {
+            max-width: 100%; 
+            height: auto; 
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="../logo.png" alt="Logo del sito">
+            </a>
+        </div>
+    </header>
+    {{ include('menu.html') }}
     <div class="container">
         <h2>Elenco dei Clienti</h2>
-        <table class="table table-dark table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Elimina</th> 
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Address</th>
-                    <th>Address Number</th>
-                    <th>City</th>
-                    <th>ZIP Code</th>
-                    <th>Province</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>Tax Code</th>
-                    <th>VAT</th>
-                    <th>PEC</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for customer in customers %}
+        <div class="table-responsive">
+            <table class="table table-dark table-striped">
+                <thead class="thead-dark">
                     <tr>
-                        <td>
-                            <form action="/delete-customer/{{ customer.id }}" method="POST" style="display: inline;">
-                                <button type="submit" class="btn btn-danger">Elimina</button>
-                            </form>
-                        </td> 
-                        <td>{{ customer.first_name }}</td>
-                        <td>{{ customer.last_name }}</td>
-                        <td>{{ customer.address }}</td>
-                        <td>{{ customer.address_number }}</td>
-                        <td>{{ customer.city }}</td>
-                        <td>{{ customer.zip_code }}</td>
-                        <td>{{ customer.province }}</td>
-                        <td>{{ customer.phone }}</td>
-                        <td>{{ customer.email }}</td>
-                        <td>{{ customer.tax_code }}</td>
-                        <td>{{ customer.vat }}</td>
-                        <td>{{ customer.pec }}</td>
+                        <th>Elimina</th>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>Indirizzo</th>
+                        <th>Numero</th>
+                        <th>Città</th>
+                        <th>ZIP</th>
+                        <th>Provincia</th>
+                        <th>Telefono</th>
+                        <th>Email</th>
+                        <th>Codice Fiscale</th>
+                        <th>P.IVA</th>
+                        <th>PEC</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for customer in customers %}
+                        <tr>
+                            <td>
+                                <form action="/delete-customer/{{ customer.id }}" method="POST" style="display: inline;">
+                                    <button type="submit" class="btn btn-danger">Elimina</button>
+                                </form>
+                            </td>
+                            <td>{{ customer.first_name }}</td>
+                            <td>{{ customer.last_name }}</td>
+                            <td>{{ customer.address }}</td>
+                            <td>{{ customer.address_number }}</td>
+                            <td>{{ customer.city }}</td>
+                            <td>{{ customer.zip_code }}</td>
+                            <td>{{ customer.province }}</td>
+                            <td>{{ customer.phone }}</td>
+                            <td>{{ customer.email }}</td>
+                            <td>{{ customer.tax_code }}</td>
+                            <td>{{ customer.vat }}</td>
+                            <td>{{ customer.pec }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>

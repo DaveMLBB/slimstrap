@@ -17,6 +17,15 @@
         .form-control:focus {
             border-color: #007bff;
         }
+        
+        header {
+            padding: 10px 0; 
+        }
+        .logo img {
+            max-width: 100%; 
+            height: auto; 
+        }
+    
     </style>
     <script>
         function validateField(input) {
@@ -30,7 +39,18 @@
     </script>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="../logo.png" alt="Logo del sito">
+            </a>
+        </div>
+    </header>
+    
     <div class="container">
+    <div class="text-center">
+            <a href="/edit-customer" class="btn btn-secondary btn-lg mb-3">Indietro</a>
+        </div>
         <h1>Modifica Cliente</h1>
         <form method="post" action="/edit-customer/{{ id }}">
             <div class="form-row">

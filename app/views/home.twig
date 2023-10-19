@@ -1,11 +1,31 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Homepage</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
+    <head>
+        <meta charset="utf-8">
+        <title>Homepage</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            header {
+                padding: 10px 0; 
+            }
+            .logo img {
+                max-width: 100%; 
+                height: auto; 
+            }
+        </style>
+    </head>
+    <body>
+
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="logo.png" alt="Logo del sito">
+            </a>
+        </div>
+    </header>
+
+    {{ include('menu.html') }}
+
     <div class="container">
         <div class="text-center mt-5">
             <h1>{{ name }}</h1>
@@ -23,12 +43,17 @@
             <div class="col-md-4">
                 <a href="/add-invoice" class="btn btn-primary btn-block mb-3">Crea Fattura</a>
             </div>
+
+           {#
             <div class="col-md-4">
                 <a href="/edit-invoice" class="btn btn-primary btn-block mb-3">Modifica Fattura</a>
             </div>
+          
             <div class="col-md-4">
                 <a href="/delete-invoice" class="btn btn-primary btn-block mb-3">Elimina Fattura</a>
             </div>
+            #}
+            
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

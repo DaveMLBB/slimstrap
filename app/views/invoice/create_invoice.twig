@@ -17,6 +17,15 @@
         .form-control:focus {
             border-color: #007bff; 
         }
+
+        header {
+            padding: 10px 0; 
+        }
+        .logo img {
+            max-width: 100%; 
+            height: auto; 
+        }
+
     </style>
     <script>
         function validateField(input) {
@@ -42,6 +51,16 @@
     </script>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="logo.png" alt="Logo del sito">
+            </a>
+        </div>
+    </header>
+
+        {{ include('menu.html') }}
+
     <div class="container">
         <h1>Aggiungi Fattura</h1>
         <form method="post" action="/add-invoice">
