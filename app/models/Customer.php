@@ -59,7 +59,7 @@ class Customer extends Model{
     }
 
     public function update($data, $id)
-{
+    {
         $customer = new Customer();
         $customer->first_name = $data['firstName'];
         $customer->last_name = $data['lastName'];
@@ -109,8 +109,18 @@ class Customer extends Model{
 
         $stmt->execute();
 
-
     }
 
+    public function delete($id)
+    {
+        $pdo = Connection::connect();
+
+        $sql = "DELETE FROM {$this->table} WHERE id = :id";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+    }
 
 }

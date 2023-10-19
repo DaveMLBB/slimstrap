@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Modifica Cliente</title>
-    <!-- Includi il CSS di Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .form-control {
-            border-color: #00cc00; /* Impostiamo il colore dei campi a verde */
+            border-color: #00cc00; 
             border-width: 3px;
         }
 
         .form-control.invalid {
-            border-color: red; /* Se il campo è invalido, impostiamo il colore a rosso */
+            border-color: red; 
         }
 
         .form-control:focus {
@@ -20,13 +19,12 @@
         }
     </style>
     <script>
-        // Funzione per verificare se un campo è compilato correttamente
         function validateField(input) {
             const value = input.value;
             if (input.checkValidity()) {
-                input.classList.remove('invalid'); // Rimuoviamo la classe 'invalid' se il campo è valido
+                input.classList.remove('invalid'); 
             } else {
-                input.classList.add('invalid'); // Aggiungiamo la classe 'invalid' se il campo è invalido
+                input.classList.add('invalid'); 
             }
         }
     </script>

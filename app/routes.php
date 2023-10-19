@@ -39,8 +39,17 @@ $app->any('/edit-customer/{id}', function (Request $request, Response $response,
     return $view->render($response, 'customer/edit_customer_form.twig', $data);
 });
 
-$app->get('/delete-customer', function (Request $request, Response $response) {
-    $data = HomeController::deleteCustomer($request, $response);
+$app->get('/delete-customer', function (Request $request, Response $response, $args) {
+    $homeController = new HomeController();
+    $data = $homeController->deleteCustomer($request, $response,$args);
+    $view = Twig::fromRequest($request);
+    return $view->render($response, 'customer/delete_customer.twig', $data);
+});
+
+$app->any('/delete-customer/{id}', function (Request $request, Response $response, $args) {
+    $id = $args['id'];
+    $homeController = new HomeController();
+    $data = $homeController->deleteCustomer($request, $response, $id);
     $view = Twig::fromRequest($request);
     return $view->render($response, 'customer/delete_customer.twig', $data);
 });

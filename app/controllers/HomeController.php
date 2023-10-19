@@ -53,9 +53,16 @@ class HomeController
             ];
     }
 
-    public static function deleteCustomer(Request $request, Response $response, $args)
+    public function deleteCustomer(Request $request, Response $response,$id)
     {
+        if ($request->getMethod() === 'POST') {
+            $customer = $this->customer->delete($id);
+            $customers = $this->customer->all();
+            return ['customers' => $customers];
+        }
+        $customers = $this->customer->all();
 
+        return ['customers' => $customers];
     }
 
     public static function createInvoice(Request $request, Response $response, $args)
