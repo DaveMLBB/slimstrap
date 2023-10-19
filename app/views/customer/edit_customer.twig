@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Modifica Cliente</title>
+    <!-- Includi il CSS di Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Elenco dei Clienti</h2>
+        <table class="table table-dark table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Modifica</th> <!-- Sposta questa colonna in cima -->
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address</th>
+                    <th>Address Number</th>
+                    <th>City</th>
+                    <th>ZIP Code</th>
+                    <th>Province</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Tax Code</th>
+                    <th>VAT</th>
+                    <th>PEC</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customer in customers %}
+                    <tr>
+                        <td>
+                            <a href="/edit-customer/{{ customer.id }}" class="btn btn-primary">Modifica</a>
+                        </td> <!-- Questa colonna segue il cambio di ordine -->
+                        <td>{{ customer.first_name }}</td>
+                        <td>{{ customer.last_name }}</td>
+                        <td>{{ customer.address }}</td>
+                        <td>{{ customer.address_number }}</td>
+                        <td>{{ customer.city }}</td>
+                        <td>{{ customer.zip_code }}</td>
+                        <td>{{ customer.province }}</td>
+                        <td>{{ customer.phone }}</td>
+                        <td>{{ customer.email }}</td>
+                        <td>{{ customer.tax_code }}</td>
+                        <td>{{ customer.vat }}</td>
+                        <td>{{ customer.pec }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

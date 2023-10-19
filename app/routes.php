@@ -22,9 +22,21 @@ $app->any('/add-customer', function (Request $request, Response $response) {
 });
 
 $app->get('/edit-customer', function (Request $request, Response $response) {
-    $data = HomeController::editCustomer($request, $response);
+    $homeController = new HomeController();
+    $data = $homeController->editCustomer($request, $response);
     $view = Twig::fromRequest($request);
     return $view->render($response, 'customer/edit_customer.twig', $data);
+});
+
+$app->any('/edit-customer/{id}', function (Request $request, Response $response, $args) {
+    $id = $args['id'];
+    $homeController = new HomeController();
+    $data = $homeController->showEditCustomer($request, $response, $id);
+    $view = Twig::fromRequest($request);
+    if ($request->getMethod() === 'POST') {
+        return $view->render($response, 'customer/edit_customer.twig', $data);
+    }
+    return $view->render($response, 'customer/edit_customer_form.twig', $data);
 });
 
 $app->get('/delete-customer', function (Request $request, Response $response) {

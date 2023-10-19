@@ -32,28 +32,44 @@ class HomeController
         return ['customers' => $customers];
     }
 
-    public static function editCustomer(Request $request, Response $response, $args)
+    public function editCustomer(Request $request, Response $response)
     {
-        // Logica per "Modifica cliente"
+        $customers = $this->customer->all();
+
+        return ['customers' => $customers];
+    }
+
+    public function showEditCustomer(Request $request, Response $response, $id)
+    {
+        if ($request->getMethod() === 'POST') {
+            $data = $request->getParsedBody();
+            $customer = $this->customer->update($data, $id);
+            $customers = $this->customer->all();
+            return ['customers' => $customers];
+        }
+        $customer = $this->customer->find($id); 
+        return ['customer' => $customer,
+                'id' => $id
+            ];
     }
 
     public static function deleteCustomer(Request $request, Response $response, $args)
     {
-        // Logica per "Elimina cliente"
+
     }
 
     public static function createInvoice(Request $request, Response $response, $args)
     {
-        // Logica per "Crea fattura"
+
     }
 
     public static function editInvoice(Request $request, Response $response, $args)
     {
-        // Logica per "Modifica fattura"
+
     }
 
     public static function deleteInvoice(Request $request, Response $response, $args)
     {
-        // Logica per "Elimina fattura"
+
     }
 }

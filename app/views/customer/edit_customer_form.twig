@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Modifica Cliente</title>
+    <!-- Includi il CSS di Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .form-control {
+            border-color: #00cc00; /* Impostiamo il colore dei campi a verde */
+            border-width: 3px;
+        }
+
+        .form-control.invalid {
+            border-color: red; /* Se il campo è invalido, impostiamo il colore a rosso */
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+        }
+    </style>
+    <script>
+        // Funzione per verificare se un campo è compilato correttamente
+        function validateField(input) {
+            const value = input.value;
+            if (input.checkValidity()) {
+                input.classList.remove('invalid'); // Rimuoviamo la classe 'invalid' se il campo è valido
+            } else {
+                input.classList.add('invalid'); // Aggiungiamo la classe 'invalid' se il campo è invalido
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Modifica Cliente</h1>
+        <form method="post" action="/edit-customer/{{ id }}">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstName">Nome</label>
+                    <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Esempio: Mario" value="{{ customer.first_name }}" required oninput="validateField(this)">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="lastName">Cognome</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Esempio: Rossi" value="{{ customer.last_name }}" required oninput="validateField(this)">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="address">Indirizzo</label>
+                    <input type="text" id="address" name="address" class="form-control" placeholder="Esempio: Via Roma" value="{{ customer.address }}" required oninput="validateField(this)">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="addressNumber">Numero Indirizzo</label>
+                    <input type="text" id="addressNumber" name="addressNumber" class="form-control" placeholder="Esempio: 123" value="{{ customer.address_number }}" required oninput="validateField(this)">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="city">Comune</label>
+                    <input type="text" id="city" name="city" class="form-control" placeholder="Esempio: Milano" value="{{ customer.city }}" required oninput="validateField(this)">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="zipCode">CAP</label>
+                    <input type="text" id="zipCode" name="zipCode" class="form-control" placeholder="Esempio: 20100" value="{{ customer.zip_code }}" required pattern="\d{5}" title="Il CAP deve contenere 5 numeri" oninput="validateField(this)">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="province">Provincia</label>
+                    <input type="text" id="province" name="province" class="form-control" placeholder="Esempio: MI" value="{{ customer.province }}" required pattern="[A-Z]{2}" title="La provincia deve contenere 2 lettere maiuscole" oninput="validateField(this)">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="phone">Telefono</label>
+                    <input type="text" id="phone" name="phone" class="form-control" placeholder="Esempio: 123-456-7890" value="{{ customer.phone }}" required pattern="\d{10,13}" title="Il telefono deve contenere da 10 a 13 numeri" oninput="validateField(this)">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Esempio: mario@email.com" value="{{ customer.email }}" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zAZ]{2,}" title="Inserisci un indirizzo email valido" oninput="validateField(this)">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="taxCode">Codice Fiscale</label>
+                <input type="text" id="taxCode" name="taxCode" class="form-control" placeholder="Esempio: RSSMRA80A01H501Q" value="{{ customer.tax_code }}" required pattern="[a-zA-Z0-9]{16}" title="Il codice fiscale deve contenere 16 caratteri alfanumerici" oninput="validateField(this)">
+            </div>
+            <div class="form-group">
+                <label for="vat">P.IVA</label>
+                <input type="text" id="vat" name="vat" class="form-control" placeholder="Esempio: 12345678901" value="{{ customer.vat }}" pattern="\d{10,12}" title="La Partita IVA deve contenere da 10 a 12 numeri" oninput="validateField(this)">
+            </div>
+            <div class="form-group">
+                <label for="pec">PEC</label>
+                <input type="email" id="pec" name="pec" class="form-control" placeholder="Esempio: mario@pec.com" value="{{ customer.pec }}" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Inserisci un indirizzo PEC valido" oninput="validateField(this)">
+            </div>
+            <button type="submit" class="btn btn-primary">Modifica Cliente</button>
+        </form>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
