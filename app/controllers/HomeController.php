@@ -112,7 +112,6 @@ class HomeController
         $pdf->Cell(0, 10, 'Scadenza Pagamento: ' . $invoice['scadenza_pagamento'], 0, 1);
         $pdf->Cell(0, 10, 'Note: ' . $invoice['note'], 0, 1);
 
-        // Invia il PDF al browser
         $pdf->Output('fattura.pdf', 'D');
     }
 
