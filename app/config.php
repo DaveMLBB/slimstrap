@@ -1,0 +1,3 @@
+<?php
+
+$development = true;

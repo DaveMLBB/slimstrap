@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Aggiungi Cliente</title>
+    <!-- Includi il CSS di Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Stile per evidenziare i campi di input testuali */
+        .form-control {
+            border-color: red; /* Inizialmente rossi */
+            border-width: 3px; /* Larghezza del bordo */
+        }
+
+        .form-control.valid {
+            border-color: #00cc00; /* Verde */
+        }
+
+        .form-control:focus {
+            border-color: #007bff; /* Cambia il colore del bordo al focus (blu) */
+        }
+    </style>
+    <script>
+        // Funzione per verificare se un campo è compilato correttamente
+        function validateField(input) {
+            const value = input.value;
+            if (input.checkValidity()) {
+                input.classList.add('valid');
+            } else {
+                input.classList.remove('valid');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Aggiungi Cliente</h1>
+        <form method="post" action="/add-customer">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstName">Nome</label>
+                    <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Esempio: Mario" required oninput="validateField(this)">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="lastName">Cognome</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Esempio: Rossi" required oninput="validateField(this)">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="address">Indirizzo</label>
+                    <input type="text" id="address" name="address" class="form-control" placeholder="Esempio: Via Roma" required oninput="validateField(this)">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="addressNumber">Numero Indirizzo</label>
+                    <input type="text" id="addressNumber" name="addressNumber" class="form-control" placeholder="Esempio: 123" required oninput="validateField(this)">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="city">Comune</label>
+                    <input type="text" id="city" name="city" class="form-control" placeholder="Esempio: Milano" required oninput="validateField(this)">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="zipCode">CAP</label>
+                    <input type="text" id="zipCode" name="zipCode" class="form-control" placeholder="Esempio: 20100" required pattern="\d{5}" title="Il CAP deve contenere 5 numeri" oninput="validateField(this)">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="province">Provincia</label>
+                    <input type="text" id="province" name="province" class="form-control" placeholder="Esempio: MI" required pattern="[A-Z]{2}" title="La provincia deve contenere 2 lettere maiuscole" oninput="validateField(this)">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="phone">Telefono</label>
+                    <input type="text" id="phone" name="phone" class="form-control" placeholder="Esempio: 123-456-7890" required pattern="\d{10,13}" title="Il telefono deve contenere da 10 a 13 numeri" oninput="validateField(this)">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Esempio: mario@email.com" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zAZ]{2,}" title="Inserisci un indirizzo email valido" oninput="validateField(this)">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="taxCode">Codice Fiscale</label>
+                <input type="text" id="taxCode" name="taxCode" class="form-control" placeholder="Esempio: RSSMRA80A01H501Q" required pattern="[a-zA-Z0-9]{16}" title="Il codice fiscale deve contenere 16 caratteri alfanumerici" oninput="validateField(this)">
+            </div>
+            <div class="form-group">
+                <label for="vat">P.IVA</label>
+                <input type="text" id="vat" name="vat" class="form-control" placeholder="Esempio: 12345678901" pattern="\d{10,12}" title="La Partita IVA deve contenere da 10 a 12 numeri" oninput="validateField(this)">
+            </div>
+            <div class="form-group">
+                <label for="pec">PEC</label>
+                <input type="email" id="pec" name="pec" class="form-control" placeholder="Esempio: mario@pec.com" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Inserisci un indirizzo PEC valido" oninput="validateField(this)">
+            </div>
+            <button type="submit" class="btn btn-primary">Aggiungi Cliente</button>
+        </form>
+    </div>
+
+    <h2>Elenco dei Clienti</h2>
+    <table class="table table-dark table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>Address Number</th>
+                <th>City</th>
+                <th>ZIP Code</th>
+                <th>Province</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Tax Code</th>
+                <th>VAT</th>
+                <th>PEC</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+                <tr>
+                    <td>{{ customer.first_name }}</td>
+                    <td>{{ customer.last_name }}</td>
+                    <td>{{ customer.address }}</td>
+                    <td>{{ customer.address_number }}</td>
+                    <td>{{ customer.city }}</td>
+                    <td>{{ customer.zip_code }}</td>
+                    <td>{{ customer.province }}</td>
+                    <td>{{ customer.phone }}</td>
+                    <td>{{ customer.email }}</td>
+                    <td>{{ customer.tax_code }}</td>
+                    <td>{{ customer.vat }}</td>
+                    <td>{{ customer.pec }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Includi il JavaScript di Bootstrap (facoltativo) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Homepage</title>
+    <!-- Includi il CSS di Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="text-center mt-5">
+            <h1>{{ name }}</h1>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-4">
+                <a href="/add-customer" class="btn btn-primary btn-block mb-3">Aggiungi Cliente</a>
+            </div>
+            <div class="col-md-4">
+                <a href="/edit-customer" class="btn btn-primary btn-block mb-3">Modifica Cliente</a>
+            </div>
+            <div class="col-md-4">
+                <a href="/delete-customer" class="btn btn-primary btn-block mb-3">Elimina Cliente</a>
+            </div>
+            <div class="col-md-4">
+                <a href="/create-invoice" class="btn btn-primary btn-block mb-3">Crea Fattura</a>
+            </div>
+            <div class="col-md-4">
+                <a href="/edit-invoice" class="btn btn-primary btn-block mb-3">Modifica Fattura</a>
+            </div>
+            <div class="col-md-4">
+                <a href="/delete-invoice" class="btn btn-primary btn-block mb-3">Elimina Fattura</a>
+            </div>
+        </div>
+    </div>
+    <!-- Includi il JavaScript di Bootstrap (facoltativo) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
