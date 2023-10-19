@@ -21,4 +21,15 @@ class Model{
 
         return $all->fetchAll();
     }
+
+    public function find($id){
+
+        $pdo = Connection::connect();
+        $sql = "SELECT * FROM {$this->table} WHERE id = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 }

@@ -3,7 +3,8 @@
         "slim/slim": "4.*",
         "slim/psr7": "^1.5",
         "slim/twig-view": "^3.3",
-        "twig/twig": "^3.7"
+        "twig/twig": "^3.7",
+        "tecnickcom/tcpdf": "^6.6"
     },
     "autoload":{
         "psr-4":{

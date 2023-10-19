@@ -54,11 +54,29 @@ $app->any('/delete-customer/{id}', function (Request $request, Response $respons
     return $view->render($response, 'customer/delete_customer.twig', $data);
 });
 
-$app->get('/create-invoice', function (Request $request, Response $response) {
-    $data = HomeController::createInvoice($request, $response);
+$app->any('/add-invoice', function (Request $request, Response $response) {
+    $homeController = new HomeController(); 
+    $data = $homeController->createInvoice($request, $response);
     $view = Twig::fromRequest($request);
     return $view->render($response, 'invoice/create_invoice.twig', $data);
 });
+
+$app->get('/download-invoice/{id}', function (Request $request, Response $response, $args) {
+    $id = $args['id'];
+    $homeController = new HomeController();
+    $homeController->downloadInvoice($request, $response, $id);
+    return $response;
+});
+
+
+
+
+
+
+
+
+
+
 
 $app->get('/edit-invoice', function (Request $request, Response $response) {
     $data = HomeController::editInvoice($request, $response);

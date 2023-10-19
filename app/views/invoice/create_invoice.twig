@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Aggiungi Fattura</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .form-control {
+            border-color: red; 
+            border-width: 3px; 
+        }
+
+        .form-control.valid {
+            border-color: #00cc00; 
+        }
+
+        .form-control:focus {
+            border-color: #007bff; 
+        }
+    </style>
+    <script>
+        function validateField(input) {
+            const value = input.value;
+            if (value && input.checkValidity()) {
+                input.classList.add('valid');
+            } else {
+                input.classList.remove('valid');
+            }
+        }
+
+        function handleSelectChange(select) {
+            validateField(select);
+        }
+
+        function handleInputChange(input) {
+            validateField(input);
+        }
+
+        function handleDateChange(input) {
+            validateField(input);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Aggiungi Fattura</h1>
+        <form method="post" action="/add-invoice">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="cliente">Cliente</label>
+                        <select id="cliente" name="cliente" class="form-control" required onchange="handleSelectChange(this)">
+                            <option value="">Seleziona un cliente</option>
+                            {% for customer in customers %}
+                                <option value="{{ customer.id }}">{{ customer.first_name }} {{ customer.last_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="data">Data</label>
+                        <input type="date" id="data" name="data" class="form-control" required oninput="handleDateChange(this)">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="prestazione">Prestazione</label>
+                <input type="text" id="prestazione" name="prestazione" class="form-control" placeholder="Descrizione della prestazione" oninput="handleInputChange(this)">
+            </div>
+            <div class="form-group">
+                <label for="metodo_pagamento">Metodo di Pagamento</label>
+                <input type="text" id="metodo_pagamento" name="metodo_pagamento" class="form-control" placeholder="Metodo di pagamento" oninput="handleInputChange(this)">
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="scadenza_pagamento">Scadenza Pagamento</label>
+                        <input type="date" id="scadenza_pagamento" name="scadenza_pagamento" class="form-control" oninput="handleDateChange(this)">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="note">Note</label>
+                        <textarea id="note" name="note" class="form-control" placeholder="Note aggiuntive" oninput="handleInputChange(this)"></textarea>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Aggiungi Fattura</button>
+        </form>
+        
+        <h2>Elenco delle Fatture</h2>
+        <table class="table table-dark table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Cliente</th>
+                    <th>Data</th>
+                    <th>Scadenza Pagamento</th>
+                    <th>Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for invoice in invoices %}
+                    <tr>
+                        <td><a href="/download-invoice/{{ invoice.id }}" class="btn btn-success">Download</a></td>
+                        <td>{{ invoice.customer_name }}</td>
+                        <td>{{ invoice.data }}</td>
+                        <td>{{ invoice.scadenza_pagamento }}</td>
+                        <td>{{ invoice.note }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

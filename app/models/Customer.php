@@ -47,16 +47,6 @@ class Customer extends Model{
 
     }
 
-    public function find($id){
-
-        $pdo = Connection::connect();
-        $sql = "SELECT * FROM {$this->table} WHERE id = :id";
-        $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
-    }
 
     public function update($data, $id)
     {
